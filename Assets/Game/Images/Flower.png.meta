@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: 5b4fa66ce80fac54ba86372b2897ea5a
+guid: 604192fb8c29b7e4d8376ecb1232a3f1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6764833056523796144
-    second: Leaf_Yellow_0
+      213: 3373568495408583166
+    second: Flower_0
   - first:
-      213: -5645601497967572982
-    second: Leaf_Yellow_1
+      213: 5540668397679465389
+    second: Flower_1
   - first:
-      213: 3242152171493770462
-    second: Leaf_Yellow_2
+      213: -4610566733436411102
+    second: Flower_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -77,7 +77,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -89,7 +89,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -101,7 +101,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -112,7 +112,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Leaf_Yellow_0
+      name: Flower_0
       rect:
         serializedVersion: 2
         x: 0
@@ -120,20 +120,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 051441d3d2c7e12a0800000000000000
-      internalID: -6764833056523796144
+      spriteID: ef117423ca251de20800000000000000
+      internalID: 3373568495408583166
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leaf_Yellow_1
+      name: Flower_1
       rect:
         serializedVersion: 2
         x: 16
@@ -141,20 +141,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a08ca3a695bc6a1b0800000000000000
-      internalID: -5645601497967572982
+      spriteID: da3daed4d8864ec40800000000000000
+      internalID: 5540668397679465389
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leaf_Yellow_2
+      name: Flower_2
       rect:
         serializedVersion: 2
         x: 32
@@ -168,8 +168,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed4c5a9e8307efc20800000000000000
-      internalID: 3242152171493770462
+      spriteID: 2232a48dbf9f300c0800000000000000
+      internalID: -4610566733436411102
       vertices: []
       indices: 
       edges: []
