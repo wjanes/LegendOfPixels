@@ -1,19 +1,17 @@
 using UnityEngine;
 
-/// <summary>
-/// Hauptklasse mit Standard für Standardfunktionen
-/// </summary>
+/// Hauptklasse mit Standard fÃ¼r Standardfunktionen
 public class MainObject : MonoBehaviour
 {
 
     private static float pixelFrac = 1f / 16f;
     public Vector3 change = new Vector3();
-    private BoxCollider2D boxCollider;
-    private Collider2D[] colliders;
+    protected BoxCollider2D boxCollider;
+    protected Collider2D[] colliders;
     private Animator anim;
 
 
-    private void Awake()
+    protected virtual void Awake()
     {
         boxCollider = GetComponent<BoxCollider2D>();
         colliders = new Collider2D[10];
@@ -22,9 +20,30 @@ public class MainObject : MonoBehaviour
 
     void LateUpdate()
     {
+        // Animation set the stands (U D L R)
         anim.SetFloat("change_x", change.x);
+        anim.SetFloat("change_y", change.y);
+
+        if (change.y <= -1f)
+        {
+            anim.SetFloat("lookAt", 0f);
+        }
+        else if (change.x <= -1f)
+        {
+            anim.SetFloat("lookAt", 1f);
+        }
+        else if (change.y >= 1f)
+        {
+            anim.SetFloat("lookAt", 2f);
+        }
+        else if (change.x >= 1f)
+        {
+            anim.SetFloat("lookAt", 3f);
+        }
+
         // Anwenden der in Change gesetzten Bewegung
-        float step = roundToPixelgrid(1f * Time.deltaTime);
+        //float step = roundToPixelgrid(1f * Time.deltaTime);
+        float step = 2f * Time.deltaTime;
 
         Vector3 oldpos = transform.position;
         transform.position += change * step;
@@ -36,24 +55,17 @@ public class MainObject : MonoBehaviour
 
         change = Vector3.zero;
     }
-    /// <summary>
-    /// "Pixel Perfect" Runden
-    /// </summary>
-    /// <param name="f">Wert als FLoatpoint</param>
-    /// <returns></returns>
+
     public float roundToPixelgrid(float f)
     {
         return Mathf.Ceil(f / pixelFrac) * pixelFrac;
     }
 
-
-    /// <summary>
-    /// Gibt an ob das Objekt kollidiert ist oder nicht
-    /// </summary>
-    /// <returns>Ja oder Nein</returns>
+    
     public bool IsColliding()
     {
         Physics2D.SyncTransforms();
         return boxCollider.OverlapCollider(new ContactFilter2D(), colliders) > 0;
     }
+    
 }

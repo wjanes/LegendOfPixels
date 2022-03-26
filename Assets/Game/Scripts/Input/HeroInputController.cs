@@ -5,25 +5,27 @@ using UnityEngine;
 public class HeroInputController : MonoBehaviour
 {
     public Hero hero;
+    private static readonly int positive = 1;
+    private static readonly int negative = -1;
 
     // Update is called once per frame
     private void Update()
     {
         if (Input.GetKey(KeyCode.D))
         {
-            hero.change.x = 1;
+            hero.change.x = positive;
         }
         else if (Input.GetKey(KeyCode.A))
         {
-            hero.change.x = -1;
+            hero.change.x = negative;
         }
         else if (Input.GetKey(KeyCode.W))
         {
-            hero.change.y = 1;
+            hero.change.y = positive;
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            hero.change.y = -1;
+            hero.change.y = negative;
         }
     }
 }
