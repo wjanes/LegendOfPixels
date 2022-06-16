@@ -27,5 +27,8 @@ public class HeroInputController : MonoBehaviour
         {
             hero.change.y = negative;
         }
+        else if (Input.GetKeyUp(KeyCode.E)){
+            hero.performAction();
+        }
     }
 }

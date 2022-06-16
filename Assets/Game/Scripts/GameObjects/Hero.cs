@@ -5,6 +5,9 @@ using UnityEngine;
 public class Hero : MainObject
 {
     private ContactFilter2D triggerContactFilter;
+    public RuntimeAnimatorController emptySkin;
+    public RuntimeAnimatorController shieldSkin;
+
 
     protected override void Awake()
     {
@@ -18,17 +21,31 @@ public class Hero : MainObject
     private void Update()
     {
         int found = boxCollider.OverlapCollider(triggerContactFilter, colliders);
-        for(int i = 0; i < found; i++)
+        for (int i = 0; i < found; i++)
         {
             Collider2D collider = colliders[i];
             if (collider.isTrigger)
             {
-                foreach(Collectable collectable in collider.GetComponents<Collectable>())
+                foreach (Collectable collectable in collider.GetComponents<Collectable>())
                 {
                     collectable.onCollect();
                 }
             }
         }
+
+        if (SaveGameData.current.inventory.shield)
+        {
+            animator.runtimeAnimatorController = shieldSkin;
+        }
+        else
+        {
+            animator.runtimeAnimatorController = emptySkin;
+        }
+    }
+
+    public void performAction() {
+        Sword sword = GetComponentInChildren<Sword>();
+        sword.stroke();
     }
 
 }
