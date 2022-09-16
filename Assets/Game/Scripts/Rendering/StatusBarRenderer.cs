@@ -9,6 +9,7 @@ public class StatusBarRenderer : MonoBehaviour
 
     public TextMeshProUGUI gemLabel;
     public Image weaponA;
+    public Image weaponB;
 
 
     // Start is called before the first frame update
@@ -22,6 +23,7 @@ public class StatusBarRenderer : MonoBehaviour
     {
         gemLabel.text = SaveGameData.current.inventory.gems.ToString("D3");
         weaponA.gameObject.SetActive(SaveGameData.current.inventory.shield);
+        weaponB.gameObject.SetActive(SaveGameData.current.inventory.sword);
    
     }
 }

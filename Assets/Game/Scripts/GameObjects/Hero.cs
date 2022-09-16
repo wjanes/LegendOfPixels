@@ -1,4 +1,4 @@
- using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -66,6 +66,9 @@ public class Hero : MainObject
 
     public void performAction()
     {
+
+        if (SaveGameData.current.inventory.sword == false) { return; }
+
         animator.enabled = false;
         AnimationEventDeligate.whenTimelineEventReached += resetSkin;
          
@@ -75,7 +78,7 @@ public class Hero : MainObject
         } 
         else
         {
-            emptyActionSkin.apply(GetComponent<SpriteRenderer>(), Mathf.RoundToInt(animator.GetFloat("lookAt")) ); 
+            emptyActionSkin.apply(GetComponent<SpriteRenderer>(), Mathf.RoundToInt(animator.GetFloat("lookAt"))); 
         }
         Sword sword = GetComponentInChildren<Sword>();
         sword.stroke();

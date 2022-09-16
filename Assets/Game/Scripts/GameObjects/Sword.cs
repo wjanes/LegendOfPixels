@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Sword : MonoBehaviour
@@ -7,19 +5,34 @@ public class Sword : MonoBehaviour
 
     public Animator animator;
     public Animator characterAnimator;
+    public CollisionDetector collisionDetector;
 
     private void setVisible(bool isVisible)
     {
         animator.gameObject.SetActive(isVisible);
     }
 
-    public void Start() => setVisible(false);
+    public void Start()
+    {
+        setVisible(false);
+        collisionDetector.whenCollisionDetected = onCollisionDetected;
+    }
 
-    public void onEnable() {
+    private void onCollisionDetected(Collider2D collider)
+    {
+        Debug.Log("Klinge hat getroffen: " + collider);
+        Bush bush = collider.GetComponent<Bush>();
+        if(bush != null)
+        {
+            bush.onHitbySword();
+        }
+    }
+
+    public void OnEnable() {
         AnimationEventDeligate.whenTimelineEventReached += onTimeLineEvent; 
     }
 
-    public void onDisable() {
+    public void OnDisable() {
         AnimationEventDeligate.whenTimelineEventReached -= onTimeLineEvent;
     }
 
