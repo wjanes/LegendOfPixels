@@ -10,4 +10,8 @@ public class SaveGameData
     //Speicher für einsammelbare Objekte
     public Inventory inventory = new Inventory();
 
+    //Aktueller Gesundheitszustand des Spielers
+    public Health health = new Health();
+
+
 }

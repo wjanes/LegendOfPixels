@@ -67,5 +67,17 @@ public class MainObject : MonoBehaviour
         Physics2D.SyncTransforms();
         return boxCollider.OverlapCollider(new ContactFilter2D(), colliders) > 0;
     }
+
+    public Vector3 getFullTilePosition()
+    {
+        Vector3 p = transform.position;
+        p.x = Mathf.FloorToInt(p.x);
+        p.y = Mathf.CeilToInt(p.y);
+
+        p.x += 0.5f;
+        p.y -= 0.5f;
+
+        return p;
+    }
     
 }

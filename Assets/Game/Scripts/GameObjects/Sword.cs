@@ -20,7 +20,6 @@ public class Sword : MonoBehaviour
 
     private void onCollisionDetected(Collider2D collider)
     {
-        Debug.Log("Klinge hat getroffen: " + collider);
         Bush bush = collider.GetComponent<Bush>();
         if(bush != null)
         {
