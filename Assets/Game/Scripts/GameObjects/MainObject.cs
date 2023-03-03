@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 /// Hauptklasse mit Standard für Standardfunktionen
@@ -9,6 +11,7 @@ public class MainObject : MonoBehaviour
     protected BoxCollider2D boxCollider;
     protected Collider2D[] colliders;
     protected Animator animator;
+    protected int numFound = 0;
 
 
     protected virtual void Awake()
@@ -51,6 +54,12 @@ public class MainObject : MonoBehaviour
         if (IsColliding())
         {
             transform.position = oldpos;
+            for(int i = 0; i < numFound; i++) {
+                TouchableBlocker tb = colliders[i].GetComponent<TouchableBlocker>();
+                if (tb != null) {
+                    tb.onTouch();
+                }
+            }
         }
 
         change = Vector3.zero;
@@ -61,11 +70,12 @@ public class MainObject : MonoBehaviour
         return Mathf.Ceil(f / pixelFrac) * pixelFrac;
     }
 
-    
+
     public bool IsColliding()
     {
         Physics2D.SyncTransforms();
-        return boxCollider.OverlapCollider(new ContactFilter2D(), colliders) > 0;
+        numFound = boxCollider.OverlapCollider(new ContactFilter2D(), colliders);
+        return numFound  > 0;
     }
 
     public Vector3 getFullTilePosition()
@@ -79,5 +89,60 @@ public class MainObject : MonoBehaviour
 
         return p;
     }
-    
+
+    public void pushByTiles(float deltaX, float deltaY)
+    {
+        Vector3 tilepos = getFullTilePosition();
+        Vector3 oldPos = tilepos;
+
+        tilepos.x += deltaX;
+        tilepos.y += deltaY;
+        transform.position = tilepos;
+
+        if (IsColliding())
+        {
+            transform.position = oldPos;
+        }
+        else
+        {
+            StartCoroutine(animateMoveTowards(oldPos, tilepos));
+        }
+
+    }
+
+    private IEnumerator animateMoveTowards(Vector3 fromPos, Vector3 toPos)
+    {
+        float duration = 0.1f;
+
+        for (float t = 0f; t <= 1f; t = t + Time.deltaTime / duration)
+        {
+            transform.position = Vector3.Lerp(fromPos, toPos, t);
+            yield return new WaitForEndOfFrame();
+        }
+
+    }
+
+    public void pushAwayFrom(MonoBehaviour deflector)
+    {
+
+        Vector3 diff = transform.position - deflector.transform.position;
+        pushByTiles(diff.x, diff.y);
+    }
+
+    public void flicker(int times)
+    {
+        StartCoroutine(animateFlicker(times));
+    }
+
+    private IEnumerator animateFlicker(int times)
+    {
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        for (int i = 0; i < times; i++)
+        {
+            sr.color = Color.red;
+            yield return new WaitForSeconds(0.05f);
+            sr.color = Color.white;
+            yield return new WaitForSeconds(0.05f);
+        }
+    }
 }
