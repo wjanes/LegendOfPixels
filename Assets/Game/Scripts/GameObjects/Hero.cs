@@ -62,6 +62,22 @@ public class Hero : MainObject
         {
             animator.runtimeAnimatorController = emptySkin;
         }
+
+        if(SaveGameData.current.health.current == 0) {
+            animator.SetTrigger("die");
+            animator.updateMode = AnimatorUpdateMode.UnscaledTime;
+            GetComponent<HeroInputController>().enabled = false;
+
+            Time.timeScale = 0f; // Spiel pausieren 
+
+        }
+
+    }
+
+    public void onDieAnimationComplete()
+    {
+        DialogsRenderer dr = FindAnyObjectByType< DialogsRenderer >();
+        dr.GameOverDialog.SetActive(true);
     }
 
     public void performAction()
@@ -71,14 +87,14 @@ public class Hero : MainObject
 
         animator.enabled = false;
         AnimationEventDeligate.whenTimelineEventReached += resetSkin;
-         
+
         if (SaveGameData.current.inventory.shield)
         {
             shieldActionSkin.apply(GetComponent<SpriteRenderer>(), Mathf.RoundToInt(animator.GetFloat("lookAt")));
-        } 
+        }
         else
         {
-            emptyActionSkin.apply(GetComponent<SpriteRenderer>(), Mathf.RoundToInt(animator.GetFloat("lookAt"))); 
+            emptyActionSkin.apply(GetComponent<SpriteRenderer>(), Mathf.RoundToInt(animator.GetFloat("lookAt")));
         }
         Sword sword = GetComponentInChildren<Sword>();
         sword.stroke();

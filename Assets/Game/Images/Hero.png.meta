@@ -27,7 +27,7 @@ TextureImporter:
       213: 4360131077223874234
     second: Hero_7
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -87,6 +87,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -126,6 +127,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -433,6 +446,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Hero_14
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fdfa204a78cfe44e8d822d9f067449f
+      internalID: 1436352898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_15
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f43f87bf8769d84295f9ebb5f22e010
+      internalID: -1336219248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -444,20 +499,22 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Hero_13: 2101405259
-      Hero_8: 1712042218
-      Hero_2: 2632276121321243838
       Hero_0: -6146700129834819302
       Hero_1: 9138555137054584332
       Hero_10: -1028990814
-      Hero_6: 1635744749237841209
-      Hero_5: 8960899199633546546
-      Hero_4: 3530003579022248241
-      Hero_12: 72613039
       Hero_11: -244308416
-      Hero_7: 4360131077223874234
-      Hero_9: -70779973
+      Hero_12: 72613039
+      Hero_13: 2101405259
+      Hero_14: 1436352898
+      Hero_15: -1336219248
+      Hero_2: 2632276121321243838
       Hero_3: 2805043176163793281
+      Hero_4: 3530003579022248241
+      Hero_5: 8960899199633546546
+      Hero_6: 1635744749237841209
+      Hero_7: 4360131077223874234
+      Hero_8: 1712042218
+      Hero_9: -70779973
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

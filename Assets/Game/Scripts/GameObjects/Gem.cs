@@ -5,6 +5,9 @@ using UnityEngine;
 public class Gem : Collectable
 {
 
+    /// <summary>
+    /// Wird ausgelöst wenn ein Edelstein eingesammelt wird
+    /// </summary>
     public override void onCollect()
     {
         base.onCollect();

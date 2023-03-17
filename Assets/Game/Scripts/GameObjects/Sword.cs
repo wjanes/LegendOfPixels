@@ -18,23 +18,38 @@ public class Sword : MonoBehaviour
         collisionDetector.whenCollisionDetected = onCollisionDetected;
     }
 
+    /// <summary>
+    /// Wenn das Schwert einen Collider berührt...
+    /// </summary>
+    /// <param name="collider">Liste mit Collidern</param>
     private void onCollisionDetected(Collider2D collider)
     {
         Bush bush = collider.GetComponent<Bush>();
-        if(bush != null)
+        if (bush != null)
         {
             bush.onHitbySword();
         }
+
+        Enemy enemy = collider.GetComponent<Enemy>();
+        if (enemy != null)
+        {
+            enemy.onHitBySword();
+        }
     }
 
-    public void OnEnable() {
-        AnimationEventDeligate.whenTimelineEventReached += onTimeLineEvent; 
+    public void OnEnable()
+    {
+        AnimationEventDeligate.whenTimelineEventReached += onTimeLineEvent;
     }
 
-    public void OnDisable() {
+    public void OnDisable()
+    {
         AnimationEventDeligate.whenTimelineEventReached -= onTimeLineEvent;
     }
 
+    /// <summary>
+    /// Schwert wird geschwungen
+    /// </summary>
     public void stroke()
     {
 
@@ -57,6 +72,7 @@ public class Sword : MonoBehaviour
     }
 
     public void onTimeLineEvent()
+
     {
         setVisible(false);
     }

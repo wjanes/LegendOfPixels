@@ -9,7 +9,10 @@ public class Bush : MonoBehaviour
     public float duration = 0.5f;
     private bool isOnHitBySwordPlaying = false;
 
-public void onHitbySword()
+    /// <summary>
+    /// Wenn der Busch von einer Waffe getroffen wird
+    /// </summary>
+    public void onHitbySword()
     {
         if (!isOnHitBySwordPlaying)
         {
@@ -17,6 +20,11 @@ public void onHitbySword()
         }
     }
 
+    /// <summary>
+    /// Busch wird zerstört
+    /// Sprites werden mittels einer Coroutine angezeigt
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator playOnHitBySword()
     {
         isOnHitBySwordPlaying = true;
@@ -29,14 +37,14 @@ public void onHitbySword()
                 item.transform.position = transform.position;
             }
         }
+
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
 
         for (int i = 0; i < destructionFrames.Length; i++)
         {
-             sr.sprite = destructionFrames[i];
+            sr.sprite = destructionFrames[i];
             yield return new WaitForSeconds(duration / destructionFrames.Length);
         }
-
         Destroy(gameObject);
     }
 }

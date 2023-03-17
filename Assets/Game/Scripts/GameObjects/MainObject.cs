@@ -122,13 +122,29 @@ public class MainObject : MonoBehaviour
 
     }
 
-    public void pushAwayFrom(MonoBehaviour deflector)
+    /// <summary>
+    /// Drückt die Figur vom angegebenen Punkt wegwärts
+    /// </summary>
+    /// <param name="deflector">Objekt, von dem die Figur abprallt</param>
+    /// <param name="topLeftAnchor">ist das Deflector Objekt links oben ausgerichtet</param>
+    public void pushAwayFrom(MonoBehaviour deflector, bool topLeftAnchor)
     {
 
-        Vector3 diff = transform.position - deflector.transform.position;
+        Vector3 diff;
+
+        if (topLeftAnchor) {
+            diff = transform.position - ( deflector.transform.position ) + new Vector3(0.5f, -0.5f, 0f);
+        } else {
+            diff = transform.position - deflector.transform.position;
+        }
+
         pushByTiles(diff.x, diff.y);
     }
 
+    /// <summary>
+    /// lässt die Figur blinken
+    /// </summary>
+    /// <param name="times">Wie oft soll figur blinken</param>
     public void flicker(int times)
     {
         StartCoroutine(animateFlicker(times));

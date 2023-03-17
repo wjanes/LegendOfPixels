@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Item_Sword : Collectable
 {
+    /// <summary>
+    /// Wird ausgelöst wenn das Schwert Item eingesammelt wird
+    /// </summary>
     public override void onCollect()
     {
         base.onCollect();
