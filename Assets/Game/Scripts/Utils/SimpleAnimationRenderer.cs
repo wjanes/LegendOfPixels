@@ -6,6 +6,8 @@ public class SimpleAnimationRenderer : MonoBehaviour
 {
     public Sprite[] frames = new Sprite[0];
     public float duration = 0.5f;
+    public bool loop = true;
+    public bool destroyObject = false;
 
     private void Start()
     {
@@ -15,8 +17,8 @@ public class SimpleAnimationRenderer : MonoBehaviour
     private IEnumerator play()
     {
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
-
-        while (enabled)
+ 
+        do
         {
             for (int i = 0; i < frames.Length; i++)
             {
@@ -24,8 +26,15 @@ public class SimpleAnimationRenderer : MonoBehaviour
                 yield return new WaitForSeconds(duration / frames.Length);
             }
         }
+        while (enabled && loop == true);
+
+    if (destroyObject == true ) {
+        Destroy(gameObject);
     }
 
-        //Destroy(gameObject);
+    }
+
+
+
     
 }

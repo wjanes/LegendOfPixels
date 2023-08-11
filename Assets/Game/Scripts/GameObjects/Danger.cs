@@ -10,6 +10,7 @@ public class Danger : TouchableBlocker
 {
     private float lastHit = 0f;
     public bool topLeftAnchor = false;
+    public bool shieldProtection = false;
 
 
     /// <summary>
@@ -21,14 +22,16 @@ public class Danger : TouchableBlocker
 
         if (Time.time - lastHit > 1f)
         {
-            SaveGameData.current.health.change(-1);
+            bool isSafe = shieldProtection && SaveGameData.current.inventory.shield;
+
+            if (!isSafe) SaveGameData.current.health.change(-1);
             lastHit = Time.time;
 
             if (SaveGameData.current.health.current > 0)
             {
                 Hero hero = FindObjectOfType<Hero>();
-                hero.pushAwayFrom(this, topLeftAnchor);
-                hero.flicker(3);
+                hero.PushAwayFrom(this, topLeftAnchor);
+                if (!isSafe) hero.Flicker(3);
             }
         }
     }

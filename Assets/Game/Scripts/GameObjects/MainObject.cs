@@ -55,8 +55,7 @@ public class MainObject : MonoBehaviour
         {
             transform.position = oldpos;
             for(int i = 0; i < numFound; i++) {
-                TouchableBlocker tb = colliders[i].GetComponent<TouchableBlocker>();
-                if (tb != null) {
+                if (colliders[i].TryGetComponent<TouchableBlocker>(out var tb)) {
                     tb.onTouch();
                 }
             }
@@ -65,7 +64,7 @@ public class MainObject : MonoBehaviour
         change = Vector3.zero;
     }
 
-    public float roundToPixelgrid(float f)
+    public float RoundToPixelgrid(float f)
     {
         return Mathf.Ceil(f / pixelFrac) * pixelFrac;
     }
@@ -78,7 +77,7 @@ public class MainObject : MonoBehaviour
         return numFound  > 0;
     }
 
-    public Vector3 getFullTilePosition()
+    public Vector3 GetFullTilePosition()
     {
         Vector3 p = transform.position;
         p.x = Mathf.FloorToInt(p.x);
@@ -90,9 +89,9 @@ public class MainObject : MonoBehaviour
         return p;
     }
 
-    public void pushByTiles(float deltaX, float deltaY)
+    public void PushByTiles(float deltaX, float deltaY)
     {
-        Vector3 tilepos = getFullTilePosition();
+        Vector3 tilepos = GetFullTilePosition();
         Vector3 oldPos = tilepos;
 
         tilepos.x += deltaX;
@@ -105,12 +104,12 @@ public class MainObject : MonoBehaviour
         }
         else
         {
-            StartCoroutine(animateMoveTowards(oldPos, tilepos));
+            StartCoroutine(AnimateMoveTowards(oldPos, tilepos));
         }
 
     }
 
-    private IEnumerator animateMoveTowards(Vector3 fromPos, Vector3 toPos)
+    private IEnumerator AnimateMoveTowards(Vector3 fromPos, Vector3 toPos)
     {
         float duration = 0.1f;
 
@@ -127,7 +126,7 @@ public class MainObject : MonoBehaviour
     /// </summary>
     /// <param name="deflector">Objekt, von dem die Figur abprallt</param>
     /// <param name="topLeftAnchor">ist das Deflector Objekt links oben ausgerichtet</param>
-    public void pushAwayFrom(MonoBehaviour deflector, bool topLeftAnchor)
+    public void PushAwayFrom(MonoBehaviour deflector, bool topLeftAnchor)
     {
 
         Vector3 diff;
@@ -138,19 +137,19 @@ public class MainObject : MonoBehaviour
             diff = transform.position - deflector.transform.position;
         }
 
-        pushByTiles(diff.x, diff.y);
+        PushByTiles(diff.x, diff.y);
     }
 
     /// <summary>
     /// lässt die Figur blinken
     /// </summary>
     /// <param name="times">Wie oft soll figur blinken</param>
-    public void flicker(int times)
+    public void Flicker(int times)
     {
-        StartCoroutine(animateFlicker(times));
+        StartCoroutine(AnimateFlicker(times));
     }
 
-    private IEnumerator animateFlicker(int times)
+    private IEnumerator AnimateFlicker(int times)
     {
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         for (int i = 0; i < times; i++)

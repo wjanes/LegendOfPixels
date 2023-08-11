@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Basisskript für Feindverhalten
+/// Basisskript fï¿½r Feindverhalten
 /// </summary>
 public class Enemy : MonoBehaviour
 {
+    public GameObject explotionPrototype;
     public void onHitBySword()
     {
         RandomSpawn rs = GetComponent<RandomSpawn>();
@@ -19,6 +20,8 @@ public class Enemy : MonoBehaviour
             }
         } 
 
+        GameObject explosion = Instantiate(explotionPrototype, transform.parent);
+        explosion.transform.position = transform.position;
         Destroy(gameObject);
     }
 }
