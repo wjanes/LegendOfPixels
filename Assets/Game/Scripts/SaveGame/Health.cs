@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //Verwaltet die Gesundheit der Spielfigur
+[System.Serializable]
 public class Health
 {
     //Aktueller Gesundheitswert

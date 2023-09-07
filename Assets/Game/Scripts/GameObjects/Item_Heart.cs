@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Item_Heart : Collectable
 {
+    public void Start()
+    {
+        SaveGameData.current.recoverDestroy(gameObject);
+    }
 
     /// <summary>
     /// Wird ausgelößt wenn das Herz Item eingesammelt wird
@@ -12,6 +16,6 @@ public class Item_Heart : Collectable
     {
         base.onCollect();
         SaveGameData.current.health.change(+1);
-        Destroy(gameObject);
+        SaveGameData.current.recordDestroy(gameObject);
     }
 }

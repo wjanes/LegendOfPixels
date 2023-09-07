@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Item_Sword : Collectable
 {
+    public void Start() {
+        if (SaveGameData.current.inventory.sword) {
+            Destroy(gameObject);
+        }
+    }
     /// <summary>
     /// Wird ausgelöst wenn das Schwert Item eingesammelt wird
     /// </summary>

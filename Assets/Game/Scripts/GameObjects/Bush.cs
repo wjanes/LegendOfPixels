@@ -9,6 +9,9 @@ public class Bush : MonoBehaviour
     public float duration = 0.5f;
     private bool isOnHitBySwordPlaying = false;
 
+    public void Start() {
+        SaveGameData.current.recoverDestroy(gameObject);
+    }
     /// <summary>
     /// Wenn der Busch von einer Waffe getroffen wird
     /// </summary>
@@ -45,6 +48,7 @@ public class Bush : MonoBehaviour
             sr.sprite = destructionFrames[i];
             yield return new WaitForSeconds(duration / destructionFrames.Length);
         }
-        Destroy(gameObject);
+        SaveGameData.current.recordDestroy(gameObject);
+
     }
 }

@@ -8,6 +8,12 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public GameObject explotionPrototype;
+
+        public void Start()
+    {
+        SaveGameData.current.recoverDestroy(gameObject);
+    }
+    
     public void onHitBySword()
     {
         RandomSpawn rs = GetComponent<RandomSpawn>();
@@ -22,6 +28,6 @@ public class Enemy : MonoBehaviour
 
         GameObject explosion = Instantiate(explotionPrototype, transform.parent);
         explosion.transform.position = transform.position;
-        Destroy(gameObject);
+        SaveGameData.current.recordDestroy(gameObject);
     }
 }

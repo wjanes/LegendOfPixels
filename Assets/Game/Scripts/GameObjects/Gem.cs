@@ -5,6 +5,9 @@ using UnityEngine;
 public class Gem : Collectable
 {
 
+    public void Start() {
+        SaveGameData.current.recoverDestroy(gameObject);
+    }
     /// <summary>
     /// Wird ausgelöst wenn ein Edelstein eingesammelt wird
     /// </summary>
@@ -14,7 +17,7 @@ public class Gem : Collectable
 
         Debug.Log("onCollect triggered");
         SaveGameData.current.inventory.gems += 1;
-        Destroy(gameObject);
+        SaveGameData.current.recordDestroy(gameObject);
 
     }
 
